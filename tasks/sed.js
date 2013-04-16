@@ -22,12 +22,15 @@ module.exports = function(grunt) {
       return;
     }
 
-    data.path = data.path || '.';
+    var files = [];
+    this.filesSrc.forEach(function(f) {
+      files.push(f);
+    });
 
     replace({
       regex: data.pattern
     , replacement: data.replacement
-    , paths: _.isArray(data.path) ? data.path : [data.path]
+    , paths: files
     , recursive: data.recursive
     , quiet: grunt.option('verbose') ? false : true
     , silent: false
